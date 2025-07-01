@@ -1,17 +1,14 @@
 FROM openjdk:17-jdk-slim
 
-# Create a working directory
 WORKDIR /opt/serposcope
 
-# Download and run latest Serposcope release
-RUN apt-get update && \
-    apt-get install -y curl && \
+# Install curl and download the latest jar
+RUN apt-get update && apt-get install -y curl && \
     curl -L -o serposcope.jar https://serposcope.serphacker.com/download/2.12.0/serposcope-2.12.0.jar
 
 EXPOSE 7134
 
-# Data dir (for mounting persistence)
-VOLUME /data
+# Set the persistent data directory
+VOLUME /root/.serposcope
 
-# Default command
-CMD ["java", "-Dserposcope.home=/data", "-jar", "serposcope.jar"]
+CMD ["java", "-Dserposcope.home=/root/.serposcope", "-jar", "serposcope.jar"]
