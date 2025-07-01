@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: serposcope
+    env: docker
+    plan: starter
+    autoDeploy: false
+    envVars:
+      - key: SERPOSCOPE_DATA
+        value: /data
+    disk:
+      name: serposcope-data
+      mountPath: /data
+      sizeGB: 2
