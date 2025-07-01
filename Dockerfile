@@ -12,4 +12,4 @@ EXPOSE 7134
 VOLUME /root/.serposcope
 
 # Run Serposcope with home directory set to persistent volume
-CMD ["java", "-Dserposcope.home=/root/.serposcope", "-jar", "serposcope.jar"]
+CMD ["java", "-Dserposcope.home=/root/.serposcope", "-Dserver.address=0.0.0.0", "-jar", "serposcope.jar"]
